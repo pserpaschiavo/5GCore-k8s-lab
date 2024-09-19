@@ -4,7 +4,8 @@ GOPATH=/home/ubuntu/go
 
 setup-calico: 
 	@kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.28.1/manifests/tigera-operator.yaml
-	@kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.28.1/manifests/custom-resources.yaml
+	@kubectl apply -f kubernetes/calico/custom-resources.yaml
+
 
 setup-flannel:
 	@kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml

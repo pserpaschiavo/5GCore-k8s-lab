@@ -4,6 +4,11 @@ sudo apt-get update
 sudo apt-get upgrade -y
 sudo apt-get install -y gcc make
 
-git clone https://github.com/free5gc/gtp5g.git && cd gtp5g
+
+wget https://github.com/free5gc/gtp5g/archive/refs/tags/v0.9.0.tar.gz
+tar -zxvf v0.9.0.tar.gz
+
+cd gtp5g-0.9.0
+
 make clean && make
 sudo make install
