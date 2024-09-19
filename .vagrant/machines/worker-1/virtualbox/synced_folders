@@ -1,0 +1,1 @@
+{"virtualbox":{"/tmp/.cluster-join":{"guestpath":"/tmp/.cluster-join","hostpath":"/home/phil/Projects/free5GC-k8s-lab/.cluster-join","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/home/phil/Projects/free5GC-k8s-lab","disabled":false,"__vagrantfile":true}}}
