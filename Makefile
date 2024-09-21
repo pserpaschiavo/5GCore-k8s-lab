@@ -14,10 +14,15 @@ setup-multus:
 	@kubectl apply -f https://raw.githubusercontent.com/k8snetworkplumbingwg/multus-cni/master/deployments/multus-daemonset-thick.yml
 
 untain-nodes:
-	@kubectl taint nodes --all node-role.kubernetes.io/control-plane-
-	@kubectl taint nodes --all node-role.kubernetes.io/master-
+	@kubectl taint nodes --all node-role.kubernetes.io/control-plane:NoSchedule-
 
-setup-free5gc:
+free5gc-environment:
+	@kubectl apply -f kubernetes/free5gc/templates/.
+	
+free5gc-userplane:
+	@helm install upf -n f5gc-userplane kubernetes/free5gc/charts/free5gc-upf
+
+free5gc-controlplane:
 
 setup-metallb:
 	@kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.14.8/config/manifests/metallb-native.yaml

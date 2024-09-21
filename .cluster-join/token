@@ -1,1 +1,1 @@
-kubeadm join 172.89.0.11:6443 --token 571iw8.4xzuuoz7lh7nbz2x --discovery-token-ca-cert-hash sha256:6e9104f5f025eda9addd5317e93c7fd1b6efe21aacf2ea308d8ecb7f7af95e31 
+kubeadm join 172.89.0.11:6443 --token s609sv.x65jdarvs9fnk64o --discovery-token-ca-cert-hash sha256:3a53223dcdd1351104f5a8ecc0a5ba7c9801f0588affc98102573ef2f9c5a383 
