@@ -20,8 +20,8 @@ Vagrant.configure("2") do |config|
 
             k8s.vm.provider "virtualbox" do |vb|
               vb.gui = false
-              vb.cpus = 4
-              vb.memory = "8192"  
+              vb.cpus = 2
+              vb.memory = "6144"  
 
             end
         end
@@ -41,7 +41,6 @@ Vagrant.configure("2") do |config|
 
             k8s.vm.provision "shell", inline: <<-SHELL
                 mkdir -p /home/vagrant/kubedata
-                mkdir -p /home/vagrant/certs
             SHELL
             
             k8s.vm.provision :shell, privileged: true, :path => "setup-vm/gtp5g-kernel-module.sh"
@@ -51,8 +50,8 @@ Vagrant.configure("2") do |config|
 
             k8s.vm.provider "virtualbox" do |vb|
               vb.gui = false
-              vb.cpus = 4
-              vb.memory = "8192"
+              vb.cpus = 2
+              vb.memory = "6144"
             
             end
         end

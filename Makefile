@@ -16,17 +16,28 @@ setup-multus:
 untain-nodes:
 	@kubectl taint nodes --all node-role.kubernetes.io/control-plane:NoSchedule-
 
-free5gc-environment:
-	@kubectl apply -f kubernetes/free5gc/templates/.
-	
-free5gc-userplane:
-	@helm install upf -n f5gc-userplane kubernetes/free5gc/charts/free5gc-upf
+setup-ebs:
+	@helm repo add openebs https://openebs.github.io/charts
+	@helm repo update
+	@helm upgrade --install openebs --namespace openebs openebs/openebs --create-namespace
 
-free5gc-controlplane:
+    # patch k8s storageclass to make openebs-hostpath as default
+	@kubectl patch storageclass openebs-hostpath -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+
+setup-ovs:
+	@kubectl apply -f https://github.com/kubevirt/cluster-network-addons-operator/releases/download/v0.89.1/namespace.yaml
+	@kubectl apply -f https://github.com/kubevirt/cluster-network-addons-operator/releases/download/v0.89.1/network-addons-config.crd.yaml 
+	@kubectl apply -f https://github.com/kubevirt/cluster-network-addons-operator/releases/download/v0.89.1/operator.yaml
+	@kubectl apply -f https://gist.githubusercontent.com/niloysh/1f14c473ebc08a18c4b520a868042026/raw/d96f07e241bb18d2f3863423a375510a395be253/network-addons-config.yaml
+	
+free5gc-prep:
+	@kubectl apply -f kubernetes/free5gc/.
+
+
+
 
 setup-metallb:
 	@kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.14.8/config/manifests/metallb-native.yaml
-
 
 setup-cert-manager:
 	@helm repo add jetstack https://charts.jetstack.io

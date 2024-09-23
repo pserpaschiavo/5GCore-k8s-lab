@@ -30,8 +30,8 @@ sudo systemctl enable --now kubelet
 
 echo "Done!"
 
-kubeadm init --apiserver-advertise-address=172.89.0.11 --pod-network-cidr=192.168.0.0/16 
-# kubeadm init --apiserver-advertise-address=172.89.0.11 --pod-network-cidr=10.244.0.0/16
+# kubeadm init --apiserver-advertise-address=172.89.0.11 --pod-network-cidr=192.168.0.0/16 
+kubeadm init --apiserver-advertise-address=172.89.0.11 --pod-network-cidr=10.244.0.0/16
 
 cp /etc/kubernetes/admin.conf /mnt/.kube/config
 
