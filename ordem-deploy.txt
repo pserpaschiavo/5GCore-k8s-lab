@@ -1,0 +1,9 @@
+nrf
+upf 1 e 2
+amf
+ausf
+smf
+pcf
+udm
+udr
+nssf
