@@ -20,8 +20,6 @@ setup-ebs:
 	@helm repo add openebs https://openebs.github.io/charts
 	@helm repo update
 	@helm upgrade --install openebs --namespace openebs openebs/openebs --create-namespace
-
-    # patch k8s storageclass to make openebs-hostpath as default
 	@kubectl patch storageclass openebs-hostpath -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
 
 setup-ovs:
