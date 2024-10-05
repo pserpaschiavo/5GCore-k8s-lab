@@ -2,6 +2,8 @@ Vagrant.configure("2") do |config|
     (1..1).each do |i|
         config.vm.define "master-#{i}" do |k8s|
             k8s.vm.box = "ubuntu/focal64"
+            # k8s.vm.box = "ubuntu/jammy64"
+            # k8s.vm.box = "rockylinux/9"
             k8s.vm.hostname = "master-#{i}"
             k8s.vm.network "private_network", ip: "172.89.0.1#{i}"
 
@@ -27,9 +29,11 @@ Vagrant.configure("2") do |config|
         end
     end
 
-    (1..1).each do |i|
+    (1..2).each do |i|
         config.vm.define "worker-#{i}" do |k8s|
             k8s.vm.box = "ubuntu/focal64"
+            # k8s.vm.box = "ubuntu/jammy64"
+            # k8s.vm.box = "rockylinux/9"
             k8s.vm.hostname = "worker-#{i}"
             k8s.vm.network "private_network", ip: "172.89.0.2#{i}"
 
