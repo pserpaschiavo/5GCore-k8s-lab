@@ -58,10 +58,10 @@ webui:
 dnn: internet  
 
 config:
-  upfIP: "192.168.0.70"    
-  amfIP: "192.168.0.72"
+  upfIP: "10.244.0.70"    
+  amfIP: "10.244.0.72"
   amfPort: "38412"
-  GnbIP: "192.168.0.71"  
+  GnbIP: "10.244.0.71"  
   mcc: 208
   mnc: 93
   tac: 7
