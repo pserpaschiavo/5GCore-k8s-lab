@@ -61,29 +61,4 @@ Vagrant.configure("2") do |config|
         end
     end
 
-    (1..1).each do |i|
-        config.vm.define "tester-#{i}" do |k8s|
-            k8s.vm.box = "ubuntu/focal64"
-            # k8s.vm.box = "ubuntu/jammy64"
-            # k8s.vm.box = "rockylinux/9"
-            k8s.vm.hostname = "tester-#{i}"
-            k8s.vm.network "private_network", ip: "172.89.0.3#{i}"
-
-            k8s.ssh.insert_key = false
-            k8s.ssh.private_key_path = ['~/.vagrant.d/insecure_private_key', '~/.ssh/id_rsa']
-            k8s.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/authorized_keys"
-
-            k8s.vm.provision :shell, privileged: true, :path => "setup-vm/container_runtime.sh"
-            k8s.vm.provision :shell, privileged: true, :path => "setup-vm/my5gRANTester.sh"
-
-            k8s.vm.provider "virtualbox" do |vb|
-              vb.gui = false
-              vb.cpus = 2
-              vb.memory = "4096"
-            
-            end
-        end
-    end
-
-
 end
