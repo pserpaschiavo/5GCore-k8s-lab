@@ -18,6 +18,14 @@ Os requisitos mínimos para as Máquinas Virtuais (*VM's*), são:
 | RAM | 8 Gb |
 | OS  | Ubuntu 20.04 (Focal Fossa) |
 
+### Instalação de softwares de apoio
+
+Além do *Vagrantfile*, o usuário tem ao seu alcance um *Makefile* composto dos comandos automatizados para o desenvolvimento do cluster. Assim, digite o comando a seguir para realizar as instalações necessárias:
+
+```
+sudo apt-get install -y gcc make vim git curl wget nano 
+```
+
 ## Preparação do Laboratório
 
 ### Vagrantfile:
@@ -52,5 +60,12 @@ Assim que encerrado, digite:
 kubectl get nodes -o wide
 ```
 
+> adicionar figura
+
 ### CNI's
 
+Como padrão, será usado o *Flannel* devido à sua simplicidade.
+
+```
+make setup-flannel
+```
