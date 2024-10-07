@@ -28,9 +28,9 @@ sudo apt-get install -y gcc make vim git curl wget nano
 
 ## Preparação do Laboratório
 
-### Vagrantfile:
-
 > Caso o usuário escolha essa opção, é necessário a instalação do **Vagrant** e do **VirtualBox**. Para a realização da instalação, de acordo com o sistema operacional do usuário (*Host*), acesse esse [link] e siga as orientações.
+
+### Vagrantfile:
 
 Faça o clone desse repositório:
 
@@ -62,6 +62,10 @@ kubectl get nodes -o wide
 
 > adicionar figura
 
+### Helm3
+
+
+
 ### CNI's
 
 Como padrão, será usado o *Flannel* devido à sua simplicidade.
@@ -69,3 +73,53 @@ Como padrão, será usado o *Flannel* devido à sua simplicidade.
 ```
 make setup-flannel
 ```
+
+Utilize o comando abaixo para verificar se todos os *POD's* estão no estado *Ready*
+
+```
+watch kubectl get pods -A
+```
+
+Assim que todos os *POD's* estiverem prontos, os nós exibirão a seguinte informação:
+
+> inserir figura
+
+Para finalizar essa etapa, será feita a implementação do **Multus CNI**:
+
+```
+make setup-multus
+```
+
+Novamente, aguarde o estado dos *POD's* para *Ready*
+
+
+```
+watch kubectl get pods -A
+```
+
+### OpenEBS
+
+**OpenEBS** é um componente desenvolvido para automatizar a criação de *Volumes* de acordo com a exigência das aplicações. De maneira resumida, o **OpenEBS** cria um *Persistent Volume - PV* a partir da existência de um *Persistent Volume Claim - PVC*. O **Free5GC** necessita de um *volume* para a criação de um banco de dados **Mongo-DB**. Digite o comando abaixo e aguarde-os ficarem prontos:
+
+```
+make setup-ebs
+```
+
+## *Deployment* do **Free5GC**
+
+Após todos os *POD's* atingirem o estado de *Ready*, o **Free5GC** será implementado da sguinte maneira:
+
+```
+make setup-free5gc
+```
+
+Com o comando `watch kubectl get pods -A`, o usuário poderá observar as mudanças no *cluster* ao longo do tempo. Alguns *POD's* serão reiniciados e logo em seguida alcançarão o estado de *Ready*
+
+### *Deployment* do **UERANSIM**
+
+
+
+```
+make setup-ueransim
+```
+
