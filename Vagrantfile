@@ -15,14 +15,14 @@ Vagrant.configure("2") do |config|
             k8s.vm.synced_folder "~/.kube", "/mnt/.kube"
 
 
-            # k8s.vm.provision :shell, privileged: true, :path => "setup-vm/gtp5g-kernel-module.sh"
+            k8s.vm.provision :shell, privileged: true, :path => "setup-vm/gtp5g-kernel-module.sh"
             k8s.vm.provision :shell, privileged: true, :path => "setup-vm/container_runtime.sh"
             k8s.vm.provision :shell, privileged: true, :path => "setup-vm/kubeadm-master.sh"
             k8s.vm.provision :shell, privileged: true, :path => "setup-vm/setIP.sh"
 
             k8s.vm.provider "virtualbox" do |vb|
               vb.gui = false
-              vb.cpus = 2
+              vb.cpus = 4
               vb.memory = "8192"  
 
             end
@@ -47,14 +47,14 @@ Vagrant.configure("2") do |config|
                 mkdir -p /home/vagrant/kubedata
             SHELL
             
-            # k8s.vm.provision :shell, privileged: true, :path => "setup-vm/gtp5g-kernel-module.sh"
+            k8s.vm.provision :shell, privileged: true, :path => "setup-vm/gtp5g-kernel-module.sh"
             k8s.vm.provision :shell, privileged: true, :path => "setup-vm/container_runtime.sh"
             k8s.vm.provision :shell, privileged: true, :path => "setup-vm/kubeadm-worker.sh"
             k8s.vm.provision :shell, privileged: true, :path => "setup-vm/setIP.sh"
 
             k8s.vm.provider "virtualbox" do |vb|
               vb.gui = false
-              vb.cpus = 2
+              vb.cpus = 4
               vb.memory = "8192"
             
             end

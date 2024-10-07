@@ -2,19 +2,19 @@
 # HNC_VARIANT=default
 GOPATH=/home/ubuntu/go
 
-setup-open5gs:
-	@helm install open5gs oci://registry-1.docker.io/gradiant/open5gs \
-		--namespace core5g \
-  		--create-namespace \
-		--version 2.2.0 \
-		--values https://gradiant.github.io/5g-charts/docs/open5gs-ueransim-gnb/5gSA-values.yaml
+# setup-open5gs:
+# 	@helm install open5gs oci://registry-1.docker.io/gradiant/open5gs \
+# 		--namespace core5g \
+#   		--create-namespace \
+# 		--version 2.2.0 \
+# 		--values https://gradiant.github.io/5g-charts/docs/open5gs-ueransim-gnb/5gSA-values.yaml
 
-setup-ueransim:
-	@helm install ueransim-gnb oci://registry-1.docker.io/gradiant/ueransim-gnb \
-	--namespace core5g \
-	--create-namespace \
-	--version 0.2.6 \
-	--values https://gradiant.github.io/5g-charts/docs/open5gs-ueransim-gnb/gnb-ues-values.yaml \
+# setup-ueransim:
+# 	@helm install ueransim-gnb oci://registry-1.docker.io/gradiant/ueransim-gnb \
+# 	--namespace core5g \
+# 	--create-namespace \
+# 	--version 0.2.6 \
+# 	--values https://gradiant.github.io/5g-charts/docs/open5gs-ueransim-gnb/gnb-ues-values.yaml \
 
 
 setup-calico: 
@@ -26,6 +26,9 @@ setup-flannel:
 
 setup-multus:
 	@kubectl apply -f https://raw.githubusercontent.com/k8snetworkplumbingwg/multus-cni/master/deployments/multus-daemonset-thick.yml
+
+remove-multus:
+	@kubectl delete -f https://raw.githubusercontent.com/k8snetworkplumbingwg/multus-cni/master/deployments/multus-daemonset-thick.yml
 
 setup-ovs:
 	@kubectl apply -f https://github.com/kubevirt/cluster-network-addons-operator/releases/download/v0.89.1/namespace.yaml
